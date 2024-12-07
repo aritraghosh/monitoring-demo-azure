@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: service-c
-        image: your-docker-registry/service-c:latest
+        image: monitorregistry.azurecr.io/service-c:latest
         ports:
         - containerPort: 3000
         resources:
