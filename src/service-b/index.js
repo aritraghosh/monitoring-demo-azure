@@ -6,7 +6,7 @@ const serviceCUrl = process.env.SERVICE_C_URL || 'http://service-c.demo-app.svc.
 
 app.get('/', async (req, res) => {
   try {
-    const response = await axios.get(serviceCUrl);
+    const response = await axios.get("http://service-c/");
     res.send(`Service B received: ${response.data}`);
   } catch (error) {
     console.error('Service B: Error calling Service C:', error.message);
