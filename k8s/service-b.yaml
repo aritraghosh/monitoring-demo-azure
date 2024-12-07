@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-b
+  namespace: microservices-demo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: service-b
+  template:
+    metadata:
+      labels:
+        app: service-b
+    spec:
+      containers:
+      - name: service-b
+        image: your-docker-registry/service-b:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: SERVICE_C_URL
+          value: "http://service-c.microservices-demo.svc.cluster.local:3000"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-b
+  namespace: microservices-demo
+spec:
+  selector:
+    app: service-b
+  ports:
+  - protocol: TCP
+    port: 3000
+    targetPort: 3000
+  type: ClusterIP
