@@ -1,20 +1,20 @@
 const express = require('express');
 const axios = require('axios');
-
 const app = express();
-const PORT = 3000;
 
-const serviceCUrl = process.env.SERVICE_C_URL || "http://localhost:3002";
+const serviceBUrl = process.env.SERVICE_B_URL || 'http://service-b.microservices-demo.svc.cluster.local:3000';
 
 app.get('/', async (req, res) => {
   try {
-    const response = await axios.get(`${serviceCUrl}`);
-    res.send(`Service B calling -> ${response.data}`);
+    const response = await axios.get(serviceBUrl);
+    res.send(`Service A received: ${response.data}`);
   } catch (error) {
-    res.status(500).send("Error calling Service C");
+    console.error('Service A: Error calling Service B:', error.message);
+    res.status(500).send('Service B failed, propagating error.');
   }
 });
 
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Service B running on port ${PORT}`);
+  console.log(`Service A running on port ${PORT}`);
 });
