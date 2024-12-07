@@ -5,6 +5,7 @@ let memoryLeak = []; // Global array for memory leak simulation
 
 app.get('/', (req, res) => {
   const randomValue = Math.random();
+  res.send('Service C says hello!');
 
   // 10% chance to trigger OOM
   if (randomValue < 0.1) {
