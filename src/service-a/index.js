@@ -2,7 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const app = express();
 
-const serviceBUrl = process.env.SERVICE_B_URL || 'http://service-b.microservices-demo.svc.cluster.local:3000';
+const serviceBUrl = process.env.SERVICE_B_URL || 'http://service-b.demo-app.svc.cluster.local:3000';
 
 app.get('/', async (req, res) => {
   try {
