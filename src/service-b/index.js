@@ -7,7 +7,7 @@ const serviceCUrl = process.env.SERVICE_C_URL || 'http://service-c.demo-app.svc.
 app.get('/', async (req, res) => {
   try {
     const response = await axios.get("http://service-c/");
-    res.send(`Service B received: ${response.data}`);
+    res.send(`Service B received data: ${response.data}`);
   } catch (error) {
     console.error('Service B: Error calling Service C:', error.message);
     res.status(500).send('Service C failed, propagating error.');

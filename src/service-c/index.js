@@ -22,12 +22,12 @@ app.get('/', (req, res) => {
   // 10% chance to return a failure
   if (randomValue < 0.2) {
     console.error('Service C: Simulating an HTTP 500 error');
-    res.status(500).send('Service C failed');
+    res.status(500).send('Service C failed with error');
     return;
   }
 
   // 80% chance to return success
-  res.send('Service C says hello!');
+  res.send('Service C says hello hello!');
 });
 
 // Endpoint to manually simulate OOMKill
@@ -40,7 +40,7 @@ app.get('/oom', (req, res) => {
   } catch (err) {
     console.error('Service C: Memory allocation failed', err.message);
   }
-  res.send('Simulating OOMKill in Service C');
+  res.send('Simulating OOMKill in Service C now');
 });
 
 const PORT = process.env.PORT || 3000;
