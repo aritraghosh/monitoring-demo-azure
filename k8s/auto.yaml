@@ -1,0 +1,12 @@
+apiVersion: monitor.azure.com/v1
+kind: Instrumentation
+metadata:
+  name: default
+  namespace: demo-app
+spec:
+  settings:
+    autoInstrumentationPlatforms: # required
+      - Java
+      - NodeJs
+  destination: # required
+    applicationInsightsConnectionString: "InstrumentationKey=b3e0a085-776d-44ff-baf6-32b3cecb30f6;IngestionEndpoint=https://centralus-2.in.applicationinsights.azure.com/;LiveEndpoint=https://centralus.livediagnostics.monitor.azure.com/;ApplicationId=950430e4-9ff2-467f-8f6b-fd4c0630d1d7"
